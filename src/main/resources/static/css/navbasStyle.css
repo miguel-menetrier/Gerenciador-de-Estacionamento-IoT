@@ -1,0 +1,30 @@
+.navbar-brand img {
+    max-height: 80px;
+    width: auto;
+}
+
+
+.navbar-nav.mx-auto .nav-item {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+
+.navbar-nav.mx-auto .nav-link {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #FFFFF0;
+}
+.bg-navbar-custom {
+
+  background-color: #1A3B5A !important;
+}
+#navbarDropdown {
+   color: #FFFFFF;
+   font-size: 1.3rem;
+   font-weight: 500;
+}
+
+#navbarDropdown:hover {
+  color: #FFD700;
+}
