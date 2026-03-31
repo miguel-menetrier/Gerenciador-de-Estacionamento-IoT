@@ -15,7 +15,6 @@ public class UsuarioRespostaDto {
 
     private String email;
 
-    private Long matricula;
 
     private String senha;
 

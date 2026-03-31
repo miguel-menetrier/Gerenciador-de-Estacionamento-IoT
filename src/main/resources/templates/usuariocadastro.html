@@ -41,11 +41,7 @@
                     <input type="email" class="form-control" th:field="*{email}" id="usuario_email" name="usuario_email"
                            placeholder="joao@senai.com" required/>
                 </div>
-                <div class="mb-3">
-                    <label for="usuario_matricula" class="form-label">Matrícula</label>
-                    <input type="number" class="form-control" th:field="*{matricula}" id="usuario_matricula"
-                           name="usuario_matricula" min="10000" value="10000" placeholder="4540703870" required/>
-                </div>
+
                 <div class="mb-3">
                     <label for="usuario_dataNascimento" class="form-label">Data de Nascimento</label>
                     <input type="date" class="form-control" th:max="${dataAtual}" th:field="*{dataNascimento}"

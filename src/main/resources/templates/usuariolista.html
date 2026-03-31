@@ -35,7 +35,6 @@
                         <th>id</th>
                         <th>Nome</th>
                         <th>Email</th>
-                        <th>Matrícula</th>
                         <th>Data de Nascimento</th>
                         <th style="white-space: nowrap;">Atualizar</th>
                         <th style="white-space: nowrap;">Excluir</th>
@@ -47,7 +46,6 @@
                         <td th:text="${usuario.id}"></td>
                         <td th:text="${usuario.nome}"></td>
                         <td th:text="${usuario.email}"></td>
-                        <td th:text="${usuario.matricula}"></td>
                         <td th:text="${usuario.dataNascimento}"></td>
                         <td><a th:href="@{'/usuarioatualizar/' + ${usuario.id}}" class="btn btn-warning">Alterar</a>
                         </td>

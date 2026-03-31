@@ -18,10 +18,6 @@ public class UsuarioRequisicaoDto {
     @NotBlank(message = "O campo do email é obrigatório")
     private String email;
 
-    @NotNull(message = "O campo da matricula é obrigatório")
-    @Min(value = 10000, message = "Matrícula deve ter no mínimo 5 dígitos")
-    @Max(value = 9999999999L, message = "Matrícula deve ter no máximo 10 dígitos")
-    private Long matricula;
 
 
     @Pattern(regexp = "^$|^(?=.*[a-zA-Z])(?=.*\\d).{5,30}$", message = "A senha, se fornecida, deve conter letras, números e ter entre 5 e 30 caracteres")
