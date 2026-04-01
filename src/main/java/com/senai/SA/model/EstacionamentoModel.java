@@ -1,0 +1,24 @@
+package com.senai.SA.model;
+
+import com.senai.SA.infra.Status;
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name = "esacionamento")
+public class EstacionamentoModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private int id;
+
+    @Column(name = "ESTACIONAMENTONUMERO")
+    private String Numero;
+
+    @Column(name = "ESTACIONAMENTOSTATUS")
+    private Status status;
+
+
+}

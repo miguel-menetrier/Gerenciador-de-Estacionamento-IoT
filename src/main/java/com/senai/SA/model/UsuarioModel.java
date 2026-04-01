@@ -14,6 +14,7 @@ import java.util.Collection;
 public class UsuarioModel implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
 
     @Column(nullable = false,name = "USUARIONOME")

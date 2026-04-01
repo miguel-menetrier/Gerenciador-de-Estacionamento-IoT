@@ -10,7 +10,7 @@ document.querySelectorAll('.excluir').forEach(function(button) {
             const recursoId = this.dataset.recursoId;
 
             // Realize a chamada AJAX para excluir o recurso
-            fetch(`/recurso/${recursoId}`, {
+            fetch(`/estacionamento/${estacionamentoId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
@@ -19,14 +19,14 @@ document.querySelectorAll('.excluir').forEach(function(button) {
             .then(response => {
                 if (response.ok) {
                     // A exclusão foi bem-sucedida
-                    console.log('Recurso excluído com sucesso.');
+                    console.log('estacionamento excluído com sucesso.');
 
                     // Remove a linha da tabela após a exclusão
                     row.remove();
                 } else {
                     // A solicitação DELETE falhou
-                    console.error('Erro ao excluir recurso.');
-                    alert('Erro ao excluir recurso');
+                    console.error('Erro ao excluir estacionamento.');
+                    alert('Erro ao excluir estacionamento');
                 }
             })
             .catch(error => {

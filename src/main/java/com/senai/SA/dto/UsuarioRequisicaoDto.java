@@ -18,8 +18,6 @@ public class UsuarioRequisicaoDto {
     @NotBlank(message = "O campo do email é obrigatório")
     private String email;
 
-
-
     @Pattern(regexp = "^$|^(?=.*[a-zA-Z])(?=.*\\d).{5,30}$", message = "A senha, se fornecida, deve conter letras, números e ter entre 5 e 30 caracteres")
     private String senha;
 
