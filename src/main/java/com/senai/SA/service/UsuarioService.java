@@ -5,6 +5,7 @@ import com.senai.SA.dto.UsuarioRespostaDto;
 import com.senai.SA.exceptions.DataNascimentoInvalidaException;
 import com.senai.SA.exceptions.ExistEmailException;
 import com.senai.SA.exceptions.NotFoundException;
+import com.senai.SA.model.Role;
 import com.senai.SA.model.UsuarioModel;
 import com.senai.SA.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -49,6 +50,7 @@ public class UsuarioService {
         usuarioModel.setSenha(encoder.encode(dados.getSenha()));
         usuarioModel.setDataNascimento(dados.getDataNascimento());
         usuarioModel.setNome(dados.getNome());
+        usuarioModel.setRole(dados.getRole());
         usuarioRepository.save(usuarioModel);
         return true;
     }

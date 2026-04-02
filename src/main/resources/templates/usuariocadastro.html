@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -48,7 +48,14 @@
                            id="usuario_dataNascimento"
                            name="usuario_dataNascimento" placeholder="2007-09-12" required/>
                 </div>
-
+                <div class="mb-3" sec:authorize="hasRole('ADMIN')">
+                    <label for="role" class="form-label">Role</label>
+                    <select id="role" th:field="*{role}" class="form-control" required>
+                        <option value="" disabled selected>Selecione o tipo</option>
+                        <option value="ROLE_USER">Usuario</option>
+                        <option value="ROLE_ADMIN">Admin</option>
+                    </select>
+                </div>
                 <!-- Adiciona uma margem inferior de 1rem (16px) ao elemento -->
                 <div class="mb-3">
                     <label for="usuario_senha" class="form-label">Senha</label>

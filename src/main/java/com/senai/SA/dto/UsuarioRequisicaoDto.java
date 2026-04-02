@@ -1,6 +1,7 @@
 package com.senai.SA.dto;
 
 
+import com.senai.SA.model.Role;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -24,4 +25,8 @@ public class UsuarioRequisicaoDto {
     @NotNull(message = "O campo da data de nascimento é obrigatório")
     @PastOrPresent(message = "Data de nascimento não pode ser no futuro")
     private LocalDate dataNascimento;
+
+    private Role role;
+
+
 }

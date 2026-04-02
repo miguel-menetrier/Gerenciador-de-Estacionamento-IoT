@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface EstacionamentoRepository extends JpaRepository<EstacionamentoModel,Integer> {
-Optional<EstacionamentoModel>findByEstacionamentoNumero(String numero);
+Optional<EstacionamentoModel>findByNumero(String numero);
 
 }

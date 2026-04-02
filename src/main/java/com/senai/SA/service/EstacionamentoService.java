@@ -17,7 +17,7 @@ import java.util.Optional;
 public class EstacionamentoService {
     private final EstacionamentoRepository repository;
 
-    private boolean cadastrarEstacionamento(EstacionamentoDto dto){
+    public boolean cadastrarEstacionamento(EstacionamentoDto dto){
 
         EstacionamentoModel estacionamentoModel = new EstacionamentoModel();
         estacionamentoModel.setNumero(dto.getEstacionamentoNumero());
@@ -25,7 +25,7 @@ public class EstacionamentoService {
         repository.save(estacionamentoModel);
         return true;
     }
-    private boolean deletarEstacionamento(int id){
+    public boolean deletarEstacionamento(int id){
         boolean deletou = false;
         if(repository.existsById(id)){
             repository.deleteById(id);
@@ -35,7 +35,7 @@ public class EstacionamentoService {
 
     }
 
-    private List<EstacionamentoDto> listarEstacionamentos(){
+    public List<EstacionamentoDto> listarEstacionamentos(){
         List<EstacionamentoDto>lista = new ArrayList<>();
         List<EstacionamentoModel>listaModel = repository.findAll();
         for(EstacionamentoModel model : listaModel){
@@ -47,11 +47,11 @@ public class EstacionamentoService {
         return lista;
     }
 
-    private boolean estacionamentoAtualizar(int id,EstacionamentoDto dto){
+    public boolean estacionamentoAtualizar(int id,EstacionamentoDto dto){
         Optional<EstacionamentoModel> estacionamentoModel = repository.findById(id);
         boolean atualizou = false;
         if (estacionamentoModel.isPresent()){
-            Optional<EstacionamentoModel>estacionamentoModelOptional  = repository.findByEstacionamentoNumero(dto.getEstacionamentoNumero());
+            Optional<EstacionamentoModel>estacionamentoModelOptional  = repository.findByNumero(dto.getEstacionamentoNumero());
             if(estacionamentoModelOptional.isPresent() && estacionamentoModelOptional.get().getId() != id){
                 return atualizou;
             }
