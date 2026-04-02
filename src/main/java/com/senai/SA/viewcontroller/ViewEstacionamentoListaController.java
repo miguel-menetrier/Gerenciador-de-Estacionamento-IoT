@@ -2,7 +2,8 @@ package com.senai.SA.viewcontroller;
 
 
 
-import com.senai.SA.dto.EstacionamentoDto;
+import com.senai.SA.dto.EstacionamentoRequisicaoDto;
+import com.senai.SA.dto.EstacionamentoRespostaDto;
 import com.senai.SA.service.EstacionamentoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,9 +20,9 @@ public class ViewEstacionamentoListaController {
     @GetMapping("/estacionamentolista")
     public String viewUsuarioLista(Model model) {
 
-        List<EstacionamentoDto> listaDto = service.listarEstacionamentos();
+        List<EstacionamentoRespostaDto> listaDto = service.listarEstacionamentos();
         model.addAttribute("listaDto", listaDto);
 
-        return "usuariolista";
+        return "estacionamentolista";
     }
 }

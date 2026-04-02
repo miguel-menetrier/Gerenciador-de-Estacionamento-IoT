@@ -7,7 +7,7 @@ document.querySelectorAll('.excluir').forEach(function(button) {
 
             const row = this.closest('tr'); // Obtém a linha atual da tabela
 
-            const recursoId = this.dataset.recursoId;
+            const estacionamentoId = this.dataset.estacionamentoId;
 
             // Realize a chamada AJAX para excluir o recurso
             fetch(`/estacionamento/${estacionamentoId}`, {

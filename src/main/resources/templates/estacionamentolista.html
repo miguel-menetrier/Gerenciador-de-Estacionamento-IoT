@@ -43,7 +43,7 @@
                     <tbody>
                     <tr th:each="estacionamento : ${listaDto}">
                         <td th:text="${estacionamento.id}"></td>
-                        <td th:text="${estacionamento.numero}"></td>
+                        <td th:text="${estacionamento.estacionamentoNumero}"></td>
                         <td th:text="${estacionamento.status}"></td>
                         <td><a th:href="@{'/estacionamentoatualizar/' + ${estacionamento.id}}" class="btn btn-warning">Alterar</a>
                         </td>

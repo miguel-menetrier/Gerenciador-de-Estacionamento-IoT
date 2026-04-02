@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "esacionamento")
+@Table(name = "estacionamento")
 public class EstacionamentoModel {
 
     @Id
@@ -14,10 +14,10 @@ public class EstacionamentoModel {
     @Column(name = "ID")
     private int id;
 
-    @Column(name = "ESTACIONAMENTONUMERO")
-    private String Numero;
+    @Column(name = "estacionamentonumero")
+    private String numero;
 
-    @Column(name = "ESTACIONAMENTOSTATUS")
+    @Column(name = "estacionamentostatus")
     private Status status;
 
 
