@@ -14,10 +14,10 @@ public class EstacionamentoModel {
     @Column(name = "ID")
     private int id;
 
-    @Column(name = "ESTACIONAMENTONUMERO")
+    @Column(name = "estacionamentonumero")
     private String numero;
 
-    @Column(name = "ESTACIONAMENTOSTATUS")
+    @Column(name = "estacionamentostatus")
     private Status status;
 
 

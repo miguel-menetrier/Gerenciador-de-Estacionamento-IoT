@@ -1,7 +1,8 @@
 package com.senai.SA.service;
 
 
-import com.senai.SA.dto.EstacionamentoDto;
+import com.senai.SA.dto.EstacionamentoRequisicaoDto;
+import com.senai.SA.dto.EstacionamentoRespostaDto;
 import com.senai.SA.infra.Status;
 import com.senai.SA.model.EstacionamentoModel;
 import com.senai.SA.repository.EstacionamentoRepository;
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class EstacionamentoService {
     private final EstacionamentoRepository repository;
 
-    public boolean cadastrarEstacionamento(EstacionamentoDto dto){
+    public boolean cadastrarEstacionamento(EstacionamentoRequisicaoDto dto){
 
         EstacionamentoModel estacionamentoModel = new EstacionamentoModel();
         estacionamentoModel.setNumero(dto.getEstacionamentoNumero());
@@ -25,7 +26,7 @@ public class EstacionamentoService {
         repository.save(estacionamentoModel);
         return true;
     }
-    public boolean deletarEstacionamento(int id){
+    public  boolean deletarEstacionamento(int id){
         boolean deletou = false;
         if(repository.existsById(id)){
             repository.deleteById(id);
@@ -35,11 +36,12 @@ public class EstacionamentoService {
 
     }
 
-    public List<EstacionamentoDto> listarEstacionamentos(){
-        List<EstacionamentoDto>lista = new ArrayList<>();
+    public List<EstacionamentoRespostaDto> listarEstacionamentos(){
+        List<EstacionamentoRespostaDto>lista = new ArrayList<>();
         List<EstacionamentoModel>listaModel = repository.findAll();
         for(EstacionamentoModel model : listaModel){
-            EstacionamentoDto estacionamentoDto = new EstacionamentoDto();
+            EstacionamentoRespostaDto estacionamentoDto = new EstacionamentoRespostaDto();
+            estacionamentoDto.setId(model.getId());
             estacionamentoDto.setEstacionamentoNumero(model.getNumero());
             estacionamentoDto.setStatus(model.getStatus().toString());
             lista.add(estacionamentoDto);
@@ -47,7 +49,7 @@ public class EstacionamentoService {
         return lista;
     }
 
-    public boolean estacionamentoAtualizar(int id,EstacionamentoDto dto){
+   public boolean estacionamentoAtualizar(int id, EstacionamentoRequisicaoDto dto){
         Optional<EstacionamentoModel> estacionamentoModel = repository.findById(id);
         boolean atualizou = false;
         if (estacionamentoModel.isPresent()){
@@ -72,6 +74,17 @@ public class EstacionamentoService {
            atualizou = true;
         }
         return atualizou;
+    }
+
+    public EstacionamentoRespostaDto estacionamentobyId(int id){
+        Optional<EstacionamentoModel> estacionamentoModel = repository.findById(id);
+        EstacionamentoRespostaDto dto = new EstacionamentoRespostaDto();
+        if(estacionamentoModel.isPresent()){
+            dto.setId(estacionamentoModel.get().getId());
+            dto.setStatus(estacionamentoModel.get().getStatus().toString());
+            dto.setEstacionamentoNumero(estacionamentoModel.get().getNumero());
+        }
+        return dto;
     }
 
 
