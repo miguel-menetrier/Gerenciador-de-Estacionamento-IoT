@@ -50,7 +50,11 @@ public class UsuarioService {
         usuarioModel.setSenha(encoder.encode(dados.getSenha()));
         usuarioModel.setDataNascimento(dados.getDataNascimento());
         usuarioModel.setNome(dados.getNome());
-        usuarioModel.setRole(dados.getRole());
+        if (dados.getRole() == null) {
+            usuarioModel.setRole(Role.ROLE_USER);
+        }else {
+            usuarioModel.setRole(dados.getRole());
+        }
         usuarioRepository.save(usuarioModel);
         return true;
     }

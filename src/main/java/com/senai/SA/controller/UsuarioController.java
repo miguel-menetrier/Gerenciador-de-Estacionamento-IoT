@@ -22,9 +22,7 @@ public class UsuarioController {
 
     @PostMapping("/usuario")
     public String cadastrarUsuario(@Valid @ModelAttribute("usuarioDto") UsuarioRequisicaoDto usuarioDto) {
-        usuarioDto.setRole(Role.ROLE_USER);
         service.cadastrarUsuario(usuarioDto);
-
         return "redirect:/usuariolista";
 
     }

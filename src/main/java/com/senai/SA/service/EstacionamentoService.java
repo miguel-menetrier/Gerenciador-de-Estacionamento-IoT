@@ -73,6 +73,7 @@ public class EstacionamentoService {
             }
            atualizou = true;
         }
+        if (atualizou) repository.save(estacionamentoModel.get());
         return atualizou;
     }
 

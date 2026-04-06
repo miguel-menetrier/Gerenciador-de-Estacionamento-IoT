@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-
     @ExceptionHandler(ExistEmailException.class)
     private String EmailEmUso(ExistEmailException ex, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 

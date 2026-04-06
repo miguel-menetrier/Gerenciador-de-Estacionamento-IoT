@@ -29,7 +29,7 @@ public class UsuarioModel implements UserDetails {
     @Column(nullable = false, name = "USUARIOSENHA")
     private String senha;
 
-    @Column(nullable = false, name = "USUARIODTNASC")
+        @Column(nullable = false, name = "USUARIODTNASC")
     private LocalDate dataNascimento;
 
     // ✅ NEW FIELD
