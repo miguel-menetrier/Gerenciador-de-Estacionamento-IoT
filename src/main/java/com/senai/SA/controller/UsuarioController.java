@@ -2,7 +2,6 @@ package com.senai.SA.controller;
 
 
 import com.senai.SA.dto.UsuarioRequisicaoDto;
-import com.senai.SA.model.Role;
 import com.senai.SA.service.UsuarioService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

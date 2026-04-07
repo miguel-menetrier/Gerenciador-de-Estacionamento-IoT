@@ -5,7 +5,7 @@ import com.senai.SA.dto.UsuarioRespostaDto;
 import com.senai.SA.exceptions.DataNascimentoInvalidaException;
 import com.senai.SA.exceptions.ExistEmailException;
 import com.senai.SA.exceptions.NotFoundException;
-import com.senai.SA.model.Role;
+import com.senai.SA.infra.Role;
 import com.senai.SA.model.UsuarioModel;
 import com.senai.SA.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
