@@ -1,4 +1,4 @@
-package com.senai.SA.model;
+package com.senai.SA.infra;
 
 public enum Role {
     ROLE_USER,

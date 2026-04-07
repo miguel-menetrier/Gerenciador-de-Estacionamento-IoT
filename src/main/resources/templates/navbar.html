@@ -31,9 +31,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <!-- Item para acessar a lista de usuários -->
+
                 <li class="nav-item">
-                    <a class="nav-link" href="/usuariolista">Usuário</a>
-                </li>
+                    <a sec:authorize="hasRole('ADMIN')" class="nav-link" href="/usuariolista">Usuário</a>
+                    <a sec:authorize="hasAuthority('ROLE_USER') and !hasAuthority('ROLE_ADMIN')" class="nav-link"
+                       href="/perfil">
+                        Perfil
+                    </a>                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/estacionamentolista">Estacionamento</a>
                 </li>

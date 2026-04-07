@@ -6,6 +6,7 @@ import com.senai.SA.dto.EstacionamentoRequisicaoDto;
 import com.senai.SA.dto.EstacionamentoRespostaDto;
 import com.senai.SA.service.EstacionamentoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import java.util.List;
 public class ViewEstacionamentoListaController {
     private final EstacionamentoService service;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/estacionamentolista")
     public String viewUsuarioLista(Model model) {
 

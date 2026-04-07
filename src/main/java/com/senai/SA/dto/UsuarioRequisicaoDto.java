@@ -1,7 +1,7 @@
 package com.senai.SA.dto;
 
 
-import com.senai.SA.model.Role;
+import com.senai.SA.infra.Role;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 

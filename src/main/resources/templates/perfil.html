@@ -25,7 +25,7 @@
         <div class="card-body">
 
             <!-- inicio do formulário, deve conter apenas os inputs e botão-->
-            <form method="post" th:action="@{'/usuario/'+${usuarioDto.id}}" th:object="${usuarioDto}">
+            <form method="post" th:action="@{'/perfil/'+${usuarioDto.id}}" th:object="${usuarioDto}">
                 <!-- Adiciona uma margem inferior de 1rem (16px) ao elemento -->
 
                 <!-- Adiciona uma margem inferior de 1rem (16px) ao elemento -->
@@ -77,7 +77,7 @@
                             <button type="submit" class="btn btn-primary w-100">Atualizar</button>
                         </div>
                         <div class="col-auto">
-                            <a th:href="@{~/usuariolista}" class="btn btn-secondary">Fechar</a>
+                            <a th:href="@{~/home}" class="btn btn-secondary">Fechar</a>
                         </div>
                     </div>
                     <br><br>

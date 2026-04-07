@@ -2,7 +2,6 @@ package com.senai.SA.controller;
 
 
 import com.senai.SA.dto.UsuarioRequisicaoDto;
-import com.senai.SA.model.Role;
 import com.senai.SA.service.UsuarioService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +31,14 @@ public class UsuarioController {
         service.atualizarUsuario(usuarioDto, id);
         return "redirect:/usuariolista";
     }
+
+
+    @PostMapping("/perfil/{id}")
+    public String atualizarPerfil(@Valid @ModelAttribute("usuarioDto") UsuarioRequisicaoDto usuarioDto, @PathVariable Long id) {
+        service.atualizarUsuario(usuarioDto, id);
+        return "redirect:/home";
+    }
+
 
     @DeleteMapping("/usuario/{id}")
     public ResponseEntity<Void> deletarUsuario(@PathVariable long id) {

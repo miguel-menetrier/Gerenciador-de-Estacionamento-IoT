@@ -1,6 +1,7 @@
 package com.senai.SA.dto;
 
 
+import com.senai.SA.infra.Role;
 import com.senai.SA.model.UsuarioModel;
 import lombok.Data;
 
@@ -15,10 +16,11 @@ public class UsuarioRespostaDto {
 
     private String email;
 
-
     private String senha;
 
     private LocalDate dataNascimento;
+
+    private Role role;
 
     public UsuarioRespostaDto(UsuarioModel dados) {
         this.id = dados.getId();

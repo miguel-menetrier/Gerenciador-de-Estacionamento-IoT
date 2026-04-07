@@ -3,6 +3,7 @@ package com.senai.SA.viewcontroller;
 import com.senai.SA.dto.UsuarioRespostaDto;
 import com.senai.SA.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ public class ViewUsuarioAtualizarController {
         private final UsuarioService service;
 
 
+        @PreAuthorize("hasRole('ADMIN')")
         @GetMapping("/usuarioatualizar/{id}")
         public String viewAtualizar(@PathVariable Long id, Model model) {
             UsuarioRespostaDto usuarioDto = service.buscarUsuarioById(id);

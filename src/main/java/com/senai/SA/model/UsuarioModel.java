@@ -1,5 +1,6 @@
 package com.senai.SA.model;
 
+import com.senai.SA.infra.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
