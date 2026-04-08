@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDate;
 
@@ -18,13 +17,14 @@ import java.time.LocalDate;
 public class ViewPerfil {
     private final UsuarioService service;
 
-
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/perfil")
     public String getUserProfile(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 
+        UsuarioRespostaDto user = service.buscarPorEmail(userDetails.getUsername());
+
         model.addAttribute("dataAtual", LocalDate.now());
-        model.addAttribute("usuarioDto", userDetails);
+        model.addAttribute("usuarioDto", user);
 
         return "perfil";
     }

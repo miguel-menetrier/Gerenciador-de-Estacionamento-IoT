@@ -1,7 +1,5 @@
 package com.senai.SA.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 

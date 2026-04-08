@@ -17,21 +17,22 @@ public class EstacionamentoController {
     private final EstacionamentoService estacionamentoService;
 
     @PostMapping("/estacionamento")
-    public String cadastrarEstacionamento(@Valid @ModelAttribute EstacionamentoRequisicaoDto estacionamentoDto){
+    public String cadastrarEstacionamento(@Valid @ModelAttribute EstacionamentoRequisicaoDto estacionamentoDto) {
 
         estacionamentoService.cadastrarEstacionamento(estacionamentoDto);
         return "redirect:/estacionamentolista";
     }
+
     @PostMapping("/estacionamento/{id}")
     public String atualizarEstacionamento(@Valid @ModelAttribute EstacionamentoRequisicaoDto estacionamentoDto,
-                                          @PathVariable("id") int id){
+                                          @PathVariable("id") int id) {
 
-        estacionamentoService.estacionamentoAtualizar(id,estacionamentoDto);
+        estacionamentoService.estacionamentoAtualizar(id, estacionamentoDto);
         return "redirect:/estacionamentolista";
     }
 
     @DeleteMapping("/estacionamento/{id}")
-    public ResponseEntity<Void> deletarEstacionamento(@PathVariable("id") int estacionamentoid){
+    public ResponseEntity<Void> deletarEstacionamento(@PathVariable("id") int estacionamentoid) {
         estacionamentoService.deletarEstacionamento(estacionamentoid);
         return ResponseEntity.noContent().build();
     }

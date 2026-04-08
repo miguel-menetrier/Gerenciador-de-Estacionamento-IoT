@@ -48,13 +48,13 @@
                 </div>
 
 
-                        <label for="usuario_dataNascimento" class="form-label">Data De Nascimento</label>
+                <label for="usuario_dataNascimento" class="form-label">Data De Nascimento</label>
 
-                        <input type="date" class="form-control"
-                               id="usuario_dataNascimento"
-                               name="dataNascimento" th:max="${dataAtual}"
-                               th:value="${#temporals.format(usuarioDto.dataNascimento, 'yyyy-MM-dd')}"
-                               required/>
+                <input type="date" class="form-control"
+                       id="usuario_dataNascimento"
+                       name="dataNascimento" th:max="${dataAtual}"
+                       th:value="${#temporals.format(usuarioDto.dataNascimento, 'yyyy-MM-dd')}"
+                       required/>
 
                 <div class="mb-3" sec:authorize="hasRole('ADMIN')">
                     <label for="role" class="form-label">Role</label>
@@ -65,27 +65,27 @@
                     </select>
                 </div>
 
-                    <!-- Adiciona uma margem inferior de 1rem (16px) ao elemento -->
-                    <div class="mb-3">
-                        <label for="usuario_senha" class="form-label">Senha</label>
-                        <input type="password" min="1" class="form-control" th:field="*{senha}" id="usuario_senha"
-                               name="usuario_senha"/>
-                    </div>
+                <!-- Adiciona uma margem inferior de 1rem (16px) ao elemento -->
+                <div class="mb-3">
+                    <label for="usuario_senha" class="form-label">Senha</label>
+                    <input type="password" min="1" class="form-control" th:field="*{senha}" id="usuario_senha"
+                           name="usuario_senha"/>
+                </div>
 
-                    <div class="row">
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary w-100">Atualizar</button>
-                        </div>
-                        <div class="col-auto">
-                            <a th:href="@{~/home}" class="btn btn-secondary">Fechar</a>
-                        </div>
+                <div class="row">
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary w-100">Atualizar</button>
                     </div>
-                    <br><br>
-                    <div th:if="${param.erro}"
-                         class="alert alert-danger d-flex flex-column align-items-center text-center" role="alert">
-                        <span th:text="${erroDto.mensagem}">Mensagem de erro</span>
+                    <div class="col-auto">
+                        <a th:href="@{~/home}" class="btn btn-secondary">Fechar</a>
                     </div>
-                    <!-- Fim do formulário -->
+                </div>
+                <br><br>
+                <div th:if="${param.erro}"
+                     class="alert alert-danger d-flex flex-column align-items-center text-center" role="alert">
+                    <span th:text="${erroDto.mensagem}">Mensagem de erro</span>
+                </div>
+                <!-- Fim do formulário -->
             </form>
 
         </div>

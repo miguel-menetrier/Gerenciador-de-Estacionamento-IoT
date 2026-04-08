@@ -14,17 +14,17 @@ import java.time.LocalDate;
 @Controller
 @RequiredArgsConstructor
 public class ViewUsuarioAtualizarController {
-        private final UsuarioService service;
+    private final UsuarioService service;
 
 
-        @PreAuthorize("hasRole('ADMIN')")
-        @GetMapping("/usuarioatualizar/{id}")
-        public String viewAtualizar(@PathVariable Long id, Model model) {
-            UsuarioRespostaDto usuarioDto = service.buscarUsuarioById(id);
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/usuarioatualizar/{id}")
+    public String viewAtualizar(@PathVariable Long id, Model model) {
+        UsuarioRespostaDto usuarioDto = service.buscarUsuarioById(id);
 
-            model.addAttribute("dataAtual", LocalDate.now());
-            model.addAttribute("usuarioDto", usuarioDto);
-            return "usuarioatualizar";
-        }
+        model.addAttribute("dataAtual", LocalDate.now());
+        model.addAttribute("usuarioDto", usuarioDto);
+        return "usuarioatualizar";
     }
+}
 

@@ -80,6 +80,7 @@ public class GlobalExceptionHandler {
 
         return "redirect:" + redirectURL;
     }
+
     @ExceptionHandler(HorarioFinalException.class)
     private String HorarioFinalInvalido(HorarioFinalException ex, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 
@@ -93,6 +94,7 @@ public class GlobalExceptionHandler {
         redirectAttributes.addFlashAttribute("erroDto", error);
         return "redirect:" + redirectURL;
     }
+
     @ExceptionHandler(HorarioInvalido.class)
     private String HorarioInvalido(HorarioInvalido ex, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 

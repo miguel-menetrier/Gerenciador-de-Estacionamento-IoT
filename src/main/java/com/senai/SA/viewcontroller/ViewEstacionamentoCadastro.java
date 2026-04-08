@@ -14,7 +14,7 @@ public class ViewEstacionamentoCadastro {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/estacionamentocadastro")
-    public String cadastrarEstacionamento(Model model){
+    public String cadastrarEstacionamento(Model model) {
         model.addAttribute("statusList", Status.values());
         model.addAttribute("estacionamentoDto", new EstacionamentoRequisicaoDto());
         return "estacionamentocadastro";

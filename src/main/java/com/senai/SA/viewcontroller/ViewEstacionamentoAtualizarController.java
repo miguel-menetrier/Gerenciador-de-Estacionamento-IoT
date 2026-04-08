@@ -1,10 +1,8 @@
 package com.senai.SA.viewcontroller;
 
 import com.senai.SA.dto.EstacionamentoRespostaDto;
-import com.senai.SA.dto.UsuarioRespostaDto;
 import com.senai.SA.infra.Status;
 import com.senai.SA.service.EstacionamentoService;
-import com.senai.SA.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -18,7 +16,7 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class ViewEstacionamentoAtualizarController {
 
-    private final  EstacionamentoService estacionamentoService;
+    private final EstacionamentoService estacionamentoService;
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/estacionamentoatualizar/{id}")

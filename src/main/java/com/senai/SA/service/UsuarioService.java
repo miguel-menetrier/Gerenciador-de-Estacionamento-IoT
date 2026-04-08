@@ -52,7 +52,7 @@ public class UsuarioService {
         usuarioModel.setNome(dados.getNome());
         if (dados.getRole() == null) {
             usuarioModel.setRole(Role.ROLE_USER);
-        }else {
+        } else {
             usuarioModel.setRole(dados.getRole());
         }
         usuarioRepository.save(usuarioModel);
@@ -101,7 +101,7 @@ public class UsuarioService {
         usuarioAntigo.setEmail(dados.getEmail());
         if (dados.getRole() == null) {
             usuarioAntigo.setRole(Role.ROLE_USER);
-        }else {
+        } else {
             usuarioAntigo.setRole(dados.getRole());
         }
         usuarioAntigo.setDataNascimento(dados.getDataNascimento());
@@ -126,5 +126,10 @@ public class UsuarioService {
         return usuarioRepository.count();
     }
 
+    public UsuarioRespostaDto buscarPorEmail(String email) {
+        UsuarioModel usuario = usuarioRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("Usuário não encontrado!!"));
 
+        return new UsuarioRespostaDto(usuario);
+    }
 }

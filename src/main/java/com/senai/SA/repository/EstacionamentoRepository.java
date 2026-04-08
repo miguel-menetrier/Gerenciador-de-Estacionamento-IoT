@@ -7,8 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface EstacionamentoRepository extends JpaRepository<EstacionamentoModel,Integer> {
-Optional<EstacionamentoModel>findByNumero(String estacionamentoNumero);
-    Optional<EstacionamentoModel>findById(int id);
+public interface EstacionamentoRepository extends JpaRepository<EstacionamentoModel, Integer> {
+    Optional<EstacionamentoModel> findByNumero(String estacionamentoNumero);
+
+    Optional<EstacionamentoModel> findById(int id);
 
 }

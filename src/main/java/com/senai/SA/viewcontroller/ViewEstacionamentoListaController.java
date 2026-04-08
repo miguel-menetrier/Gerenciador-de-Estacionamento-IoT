@@ -1,8 +1,6 @@
 package com.senai.SA.viewcontroller;
 
 
-
-import com.senai.SA.dto.EstacionamentoRequisicaoDto;
 import com.senai.SA.dto.EstacionamentoRespostaDto;
 import com.senai.SA.service.EstacionamentoService;
 import lombok.RequiredArgsConstructor;
