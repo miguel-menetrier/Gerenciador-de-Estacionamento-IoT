@@ -7,9 +7,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
-public class ReservaResposta {
-
-
+public class ReservaRespostaDto {
+    private int id;
     private LocalTime tempoTotal;
     private LocalDateTime reservaDatainicio;
     private LocalDateTime reservadataFim;

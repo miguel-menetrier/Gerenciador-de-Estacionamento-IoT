@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
-public class ReservaRequisicao {
+public class ReservaRequisicaoDto {
 
 
     private LocalTime tempoTotal;
