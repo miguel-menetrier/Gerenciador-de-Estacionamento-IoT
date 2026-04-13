@@ -37,9 +37,9 @@
                   required>
             <option value="">Selecione um usuario</option>
             <option th:each="s : ${usuarioList}"
-                    th:value="${id}"
-                    th:text="${nome}"
-                    th:selected="${id} == ${reservaDto.usuario.id}">
+                    th:value="${s.id}"
+                    th:text="${s.nome}"
+                    th:selected="${s.nome} == ${reservaDto.usuario}">
             </option>
           </select>
         </div>
