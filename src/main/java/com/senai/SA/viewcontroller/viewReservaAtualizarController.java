@@ -30,7 +30,7 @@ public class viewReservaAtualizarController {
         ReservaRespostaDto reservaRespostaDto = service.buscarReservaPorId(id);
         List<UsuarioRespostaDto> usuariolista = usuarioService.listarUsuarios();
 
-        model.addAttribute("usuarioLista", usuariolista);
+        model.addAttribute("usuarioList", usuariolista);
         model.addAttribute("reservaDto", reservaRespostaDto);
 
         return "reservaatualizar";

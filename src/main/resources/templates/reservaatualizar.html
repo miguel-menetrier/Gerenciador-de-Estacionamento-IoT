@@ -31,15 +31,15 @@
           <label for="usuario_id" class="form-label">Usuario</label>
 
           <select class="form-select"
-                  th:field="*{usuarioId}"
+                  th:field="*{usuario}"
                   id="usuario_id"
                   name="usuario_id"
                   required>
             <option value="">Selecione um usuario</option>
             <option th:each="s : ${usuarioList}"
-                    th:value="${usuarioId}"
-                    th:text="${usuarioNome}"
-                    th:selected="${usuarioId} == ${reservaDto.usuarioId}">
+                    th:value="${id}"
+                    th:text="${nome}"
+                    th:selected="${id} == ${reservaDto.usuario.id}">
             </option>
           </select>
         </div>
@@ -53,27 +53,27 @@
 
         <div class="mb-3">
           <label for="hora_saida" class="form-label">Hora de Saída</label>
-          <input type="time" class="form-control" th:field="*{horariosaida}"
+          <input type="time" class="form-control" th:field="*{horarioSaida}"
                  id="hora_saida" name="hora_saida"
                   required/>
         </div>
 
         <div class="mb-3">
           <label for="nome_carro" class="form-label">Carro</label>
-          <input type="text" class="form-control" th:field="*{nomecarro}"
+          <input type="text" class="form-control" th:field="*{nomeCarro}"
                  id="nome_carro" name="nome_carro"
                  placeholder="Fiat" required/>
         </div>
 
         <div class="mb-3">
           <label for="reserva_datainicio" class="form-label">Data incial</label>
-          <input type="date" class="form-control" th:field="*{reservaDataInicio}"
+          <input type="date" class="form-control" th:field="*{reservaDatainicio}"
                  id="reserva_datainicio" name="reserva_datainicio"
                   required/>
         </div>
         <div class="mb-3">
           <label for="reserva_datafim" class="form-label">Data final</label>
-          <input type="date" class="form-control" th:field="*{reservaDataFim}"
+          <input type="date" class="form-control" th:field="*{reservadataFim}"
                  id="reserva_datafim" name="reserva_datafim"
                  required/>
         </div>
