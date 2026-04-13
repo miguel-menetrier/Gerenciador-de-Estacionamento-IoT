@@ -2,6 +2,7 @@ package com.senai.SA.service;
 
 import com.senai.SA.dto.ReservaRequisicaoDto;
 import com.senai.SA.dto.ReservaRespostaDto;
+import com.senai.SA.exceptions.NotFoundException;
 import com.senai.SA.model.EstacionamentoModel;
 import com.senai.SA.model.Reservamodel;
 import com.senai.SA.model.UsuarioModel;
@@ -22,19 +23,19 @@ public class ReservaService {
     private final UsuarioRepository usuarioRepository;
     private final EstacionamentoRepository estacionamentoRepository;
 
-    public boolean cadastrarReserva(ReservaRequisicaoDto resquisicao){
+    public boolean cadastrarReserva(ReservaRequisicaoDto resquisicao) {
         boolean cadastrou = false;
         Reservamodel reserva = new Reservamodel();
         Optional<EstacionamentoModel> estacionamentoModelOptional = estacionamentoRepository.findById(resquisicao.getEstacionamentoId());
-        Optional<UsuarioModel>usuarioModelOptional = usuarioRepository.findById(resquisicao.getUsuarioId());
+        Optional<UsuarioModel> usuarioModelOptional = usuarioRepository.findById(resquisicao.getUsuarioId());
 
         reserva.setReservaDatainicio(resquisicao.getReservaDatainicio());
         reserva.setReservadataFim(resquisicao.getReservadataFim());
 
-        if (estacionamentoModelOptional.isPresent()){
+        if (estacionamentoModelOptional.isPresent()) {
             reserva.setEstacionamentoId(estacionamentoModelOptional.get());
         }
-        if (usuarioModelOptional.isPresent()){
+        if (usuarioModelOptional.isPresent()) {
             reserva.setUsuarioId(usuarioModelOptional.get());
         }
         reserva.setPrecoHora(resquisicao.getPrecoHora());
@@ -47,10 +48,10 @@ public class ReservaService {
         return cadastrou;
     }
 
-    public boolean deletarReserva(int id){
+    public boolean deletarReserva(int id) {
         boolean deletou = false;
-        Optional<Reservamodel>reservaModelOptinal = repository.findById(id);
-        if(reservaModelOptinal.isPresent()){
+        Optional<Reservamodel> reservaModelOptinal = repository.findById(id);
+        if (reservaModelOptinal.isPresent()) {
             Reservamodel reservaModel = reservaModelOptinal.get();
 
             UsuarioModel usuarioModel = reservaModel.getUsuarioId();
@@ -61,15 +62,15 @@ public class ReservaService {
             repository.deleteById(reservaModel.getId());
             deletou = true;
         }
-    return true;
+        return true;
     }
 
-    public List<ReservaRespostaDto>listarReservas(){
+    public List<ReservaRespostaDto> listarReservas() {
         ReservaRespostaDto respostaDto = new ReservaRespostaDto();
-        List<ReservaRespostaDto>respostaList = new ArrayList<>();
-        List<Reservamodel>listaReservaModel = repository.findAll();
+        List<ReservaRespostaDto> respostaList = new ArrayList<>();
+        List<Reservamodel> listaReservaModel = repository.findAll();
 
-        for(Reservamodel dados : listaReservaModel){
+        for (Reservamodel dados : listaReservaModel) {
             respostaDto.setPrecoHora(dados.getPrecoHora());
             respostaDto.setReservaDatainicio(dados.getReservaDatainicio());
             respostaDto.setNomeCarro(dados.getNomeCarro());
@@ -88,14 +89,14 @@ public class ReservaService {
         return respostaList;
     }
 
-    public boolean atualizarReserva(int id,ReservaRequisicaoDto dto){
+    public boolean atualizarReserva(int id, ReservaRequisicaoDto dto) {
         boolean atualizou = false;
         Optional<Reservamodel> reservaModelOptional = repository.findById(id);
         Optional<EstacionamentoModel> estacionamentoModelOptional = estacionamentoRepository.findById(dto.getEstacionamentoId());
         Optional<UsuarioModel> usuarioModelOptional = usuarioRepository.findById(dto.getUsuarioId());
 
-        if(reservaModelOptional.isPresent()){
-            Reservamodel model =  reservaModelOptional.get();
+        if (reservaModelOptional.isPresent()) {
+            Reservamodel model = reservaModelOptional.get();
 
             model.setPrecoHora(dto.getPrecoHora());
             model.setReservaDatainicio(dto.getReservaDatainicio());
@@ -103,10 +104,10 @@ public class ReservaService {
             model.setPlacaCarro(dto.getPlacaCarro());
             model.setReservadataFim(dto.getReservadataFim());
 
-            if (estacionamentoModelOptional.isPresent()){
+            if (estacionamentoModelOptional.isPresent()) {
                 model.setEstacionamentoId(estacionamentoModelOptional.get());
             }
-            if(usuarioModelOptional.isPresent()){
+            if (usuarioModelOptional.isPresent()) {
                 model.setUsuarioId(usuarioModelOptional.get());
             }
 
@@ -120,6 +121,14 @@ public class ReservaService {
         return atualizou;
     }
 
+    public ReservaRespostaDto buscarReservaPorId(int id) {
+
+        Optional<Reservamodel> reservamodelOptional = repository.findById(id);
+        if (reservamodelOptional.isPresent()) {
+            return new ReservaRespostaDto(reservamodelOptional.get());
+        }
+        throw new NotFoundException("Reserva não encontrada!!");
+    }
 
 
 }

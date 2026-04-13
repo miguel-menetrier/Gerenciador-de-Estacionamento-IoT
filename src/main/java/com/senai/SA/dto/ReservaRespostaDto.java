@@ -1,6 +1,7 @@
 package com.senai.SA.dto;
 
 
+import com.senai.SA.model.Reservamodel;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -20,4 +21,11 @@ public class ReservaRespostaDto {
     private Float precoTotal;
     private String estacionamento;
     private String usuario;
+
+    public ReservaRespostaDto() {
+    }
+
+    public ReservaRespostaDto(Reservamodel reservamodel) {
+
+    }
 }

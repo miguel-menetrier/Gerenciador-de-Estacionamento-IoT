@@ -60,13 +60,13 @@ public class EstacionamentoService {
             }
             estacionamentoModel.get().setNumero(dto.getEstacionamentoNumero());
             switch (dto.getStatus()) {
-                case "ocupado":
+                case "Ocupado":
                     estacionamentoModel.get().setStatus(Status.ocupado);
                     break;
-                case "livre":
+                case "Livre":
                     estacionamentoModel.get().setStatus(Status.livre);
                     break;
-                case "reservado":
+                case "Reservado":
                     estacionamentoModel.get().setStatus(Status.reservado);
                     break;
                 default:

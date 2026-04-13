@@ -126,6 +126,7 @@ public class UsuarioService {
         return usuarioRepository.count();
     }
 
+
     public UsuarioRespostaDto buscarPorEmail(String email) {
         UsuarioModel usuario = usuarioRepository.findByEmail(email)
                 .orElseThrow(() -> new NotFoundException("Usuário não encontrado!!"));

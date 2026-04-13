@@ -1,5 +1,6 @@
 package com.senai.SA.dto;
 
+import com.senai.SA.model.Reservamodel;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -40,4 +41,8 @@ public class ReservaRequisicaoDto {
 
     @NotNull(message = "A reserva tem que estar vinculada a um usuario")
     private int usuarioId;
+
+    public ReservaRequisicaoDto(Reservamodel reservamodel) {
+
+    }
 }
