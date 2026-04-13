@@ -32,14 +32,14 @@ public class UsuarioController {
     }
 
     @PostMapping("/usuario/{id}")
-    public String atualizarUsuario(@Valid @ModelAttribute("usuarioDto") UsuarioRequisicaoDto usuarioDto, @PathVariable Long id) {
+    public String atualizarUsuario(@Valid @ModelAttribute("usuarioDto") UsuarioRequisicaoDto usuarioDto, @PathVariable int id) {
         service.atualizarUsuario(usuarioDto, id);
         return "redirect:/usuariolista";
     }
 
 
     @PostMapping("/perfil/{id}")
-    public String atualizarPerfil(@Valid @ModelAttribute("usuarioDto") UsuarioRequisicaoDto usuarioDto, @PathVariable Long id, HttpServletRequest request,
+    public String atualizarPerfil(@Valid @ModelAttribute("usuarioDto") UsuarioRequisicaoDto usuarioDto, @PathVariable int id, HttpServletRequest request,
                                   HttpServletResponse response) {
         service.atualizarUsuario(usuarioDto, id);
 
@@ -55,7 +55,7 @@ public class UsuarioController {
 
 
     @DeleteMapping("/usuario/{id}")
-    public ResponseEntity<Void> deletarUsuario(@PathVariable long id) {
+    public ResponseEntity<Void> deletarUsuario(@PathVariable int id) {
         service.deletarUsuario(id);
         return ResponseEntity.noContent().build();
     }

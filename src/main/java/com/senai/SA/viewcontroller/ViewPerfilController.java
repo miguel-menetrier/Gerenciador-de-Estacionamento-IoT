@@ -14,7 +14,7 @@ import java.time.LocalDate;
 
 @Controller
 @RequiredArgsConstructor
-public class ViewPerfil {
+public class ViewPerfilController {
     private final UsuarioService service;
 
     @PreAuthorize("hasRole('USER')")

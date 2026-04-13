@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.time.LocalDate;
 
 @Controller
-public class ViewCadastro {
+public class ViewCadastroController {
     @GetMapping("/cadastro")
     public String viewCadastrousuario(Model model) {
 

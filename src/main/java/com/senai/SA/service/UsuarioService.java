@@ -68,7 +68,7 @@ public class UsuarioService {
         return idade > 500;
     }
 
-    public boolean deletarUsuario(long id) {
+    public boolean deletarUsuario(int id) {
         if (usuarioRepository.existsById(id)) {
             usuarioRepository.deleteById(id);
             return true;
@@ -76,7 +76,7 @@ public class UsuarioService {
         return false;
     }
 
-    public boolean atualizarUsuario(UsuarioRequisicaoDto dados, long id) {
+    public boolean atualizarUsuario(UsuarioRequisicaoDto dados, int id) {
 
 
         Optional<UsuarioModel> usuarioAntigoOP = usuarioRepository.findById(id);
@@ -114,7 +114,7 @@ public class UsuarioService {
         return true;
     }
 
-    public UsuarioRespostaDto buscarUsuarioById(long id) {
+    public UsuarioRespostaDto buscarUsuarioById(int id) {
         Optional<UsuarioModel> usuario = usuarioRepository.findById(id);
         if (usuario.isPresent()) {
             return new UsuarioRespostaDto(usuario.get());

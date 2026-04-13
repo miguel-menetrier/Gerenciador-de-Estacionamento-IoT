@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequiredArgsConstructor
-public class ViewEstacionamentoCadastro {
+public class ViewEstacionamentoCadastroController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/estacionamentocadastro")

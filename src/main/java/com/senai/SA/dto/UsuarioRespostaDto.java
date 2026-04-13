@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Data
 public class UsuarioRespostaDto {
 
-    private Long id;
+    private int id;
 
     private String nome;
 

@@ -19,7 +19,7 @@ public class ViewUsuarioAtualizarController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/usuarioatualizar/{id}")
-    public String viewAtualizar(@PathVariable Long id, Model model) {
+    public String viewAtualizar(@PathVariable int id, Model model) {
         UsuarioRespostaDto usuarioDto = service.buscarUsuarioById(id);
 
         model.addAttribute("dataAtual", LocalDate.now());
