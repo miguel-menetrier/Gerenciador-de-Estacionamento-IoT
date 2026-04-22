@@ -70,6 +70,8 @@ public class ReservaService {
         List<ReservaRespostaDto> respostaList = new ArrayList<>();
         List<Reservamodel> listaReservaModel = repository.findAll();
 
+
+
         for (Reservamodel dados : listaReservaModel) {
             respostaDto.setPrecoHora(dados.getPrecoHora());
             respostaDto.setReservaDatainicio(dados.getReservaDatainicio());
@@ -79,7 +81,7 @@ public class ReservaService {
             respostaDto.setEstacionamento(dados.getEstacionamentoId().getNumero());
             respostaDto.setUsuario(dados.getUsuarioId().getNome());
             respostaDto.setHorariochegada(dados.getHorariochegada());
-            respostaDto.setId(dados.getId());
+            respostaDto.setUsuario(dados.getUsuarioId().getNome());
             respostaDto.setHorarioSaida(dados.getHorarioSaida());
             respostaDto.setPrecoTotal(dados.getPrecoTotal());
             respostaDto.setTempoTotal(dados.getTempoTotal());
@@ -128,6 +130,12 @@ public class ReservaService {
             return new ReservaRespostaDto(reservamodelOptional.get());
         }
         throw new NotFoundException("Reserva não encontrada!!");
+    }
+
+
+    public long qtdReserva(){
+        System.out.println(repository.count());
+        return repository.count();
     }
 
 

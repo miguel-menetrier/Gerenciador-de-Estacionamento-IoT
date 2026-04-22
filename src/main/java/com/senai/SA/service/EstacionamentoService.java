@@ -60,13 +60,13 @@ public class EstacionamentoService {
             }
             estacionamentoModel.get().setNumero(dto.getEstacionamentoNumero());
             switch (dto.getStatus()) {
-                case "Ocupado":
+                case "ocupado":
                     estacionamentoModel.get().setStatus(Status.ocupado);
                     break;
-                case "Livre":
+                case "livre":
                     estacionamentoModel.get().setStatus(Status.livre);
                     break;
-                case "Reservado":
+                case "reservado":
                     estacionamentoModel.get().setStatus(Status.reservado);
                     break;
                 default:
@@ -87,6 +87,10 @@ public class EstacionamentoService {
             dto.setEstacionamentoNumero(estacionamentoModel.get().getNumero());
         }
         return dto;
+    }
+
+    public long qtdEstacionamentos(){
+        return repository.count();
     }
 
 
