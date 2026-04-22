@@ -26,6 +26,17 @@ public class ReservaRespostaDto {
     }
 
     public ReservaRespostaDto(Reservamodel reservamodel) {
+        this.id = reservamodel.getId();
+        this.reservaDatainicio = reservamodel.getReservaDatainicio();
+        this.reservadataFim = reservamodel.getReservadataFim();
+        this.horariochegada = reservamodel.getHorariochegada();
+        this.horarioSaida = reservamodel.getHorarioSaida();
+        this.nomeCarro = reservamodel.getNomeCarro();
+        this.placaCarro = reservamodel.getPlacaCarro();
+        this.precoHora = reservamodel.getPrecoHora();
+        this.precoTotal = reservamodel.getPrecoTotal();
 
+        // ⚠️ important: match types correctly
+        this.usuario = reservamodel.getUsuarioId().getNome(); // if it's an object
     }
 }
