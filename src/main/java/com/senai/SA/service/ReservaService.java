@@ -53,16 +53,10 @@ public class ReservaService {
         Optional<Reservamodel> reservaModelOptinal = repository.findById(id);
         if (reservaModelOptinal.isPresent()) {
             Reservamodel reservaModel = reservaModelOptinal.get();
-
-            UsuarioModel usuarioModel = reservaModel.getUsuarioId();
-            EstacionamentoModel estacionamentoModel = reservaModel.getEstacionamentoId();
-
-            usuarioRepository.deleteById(usuarioModel.getId());
-            estacionamentoRepository.deleteById(reservaModel.getId());
             repository.deleteById(reservaModel.getId());
             deletou = true;
         }
-        return true;
+        return deletou;
     }
 
     public List<ReservaRespostaDto> listarReservas() {
@@ -73,6 +67,7 @@ public class ReservaService {
 
 
         for (Reservamodel dados : listaReservaModel) {
+            respostaDto.setId(dados.getId());
             respostaDto.setPrecoHora(dados.getPrecoHora());
             respostaDto.setReservaDatainicio(dados.getReservaDatainicio());
             respostaDto.setNomeCarro(dados.getNomeCarro());

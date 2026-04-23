@@ -37,12 +37,10 @@ public class ReservaRequisicaoDto {
     private Float precoTotal;
 
     @NotNull(message = "A reserva tem que estar vinculada a um estacionamento")
-    private int estacionamentoId;
+    private Integer estacionamentoId;
 
     @NotNull(message = "A reserva tem que estar vinculada a um usuario")
-    private int usuarioId;
+    private Integer usuarioId;
 
-    public ReservaRequisicaoDto(Reservamodel reservamodel) {
 
-    }
 }
