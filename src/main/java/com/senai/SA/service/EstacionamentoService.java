@@ -23,7 +23,7 @@ public class EstacionamentoService {
         EstacionamentoModel estacionamentoModel = new EstacionamentoModel();
         estacionamentoModel.setNumero(dto.getEstacionamentoNumero());
         estacionamentoModel.setPrecoHora(dto.getPrecohora());
-        estacionamentoModel.setStatus(Status.livre);
+        estacionamentoModel.setStatus(Status.Livre);
         repository.save(estacionamentoModel);
         return true;
     }
@@ -62,14 +62,14 @@ public class EstacionamentoService {
             }
             estacionamentoModel.get().setNumero(dto.getEstacionamentoNumero());
             switch (dto.getStatus()) {
-                case "ocupado":
-                    estacionamentoModel.get().setStatus(Status.ocupado);
+                case "Lcupado":
+                    estacionamentoModel.get().setStatus(Status.Ocupado);
                     break;
-                case "livre":
-                    estacionamentoModel.get().setStatus(Status.livre);
+                case "Livre":
+                    estacionamentoModel.get().setStatus(Status.Livre);
                     break;
-                case "reservado":
-                    estacionamentoModel.get().setStatus(Status.reservado);
+                case "Reservado":
+                    estacionamentoModel.get().setStatus(Status.Reservado);
                     break;
                 default:
                     break;
