@@ -35,6 +35,7 @@
                         <th>ID</th>
                         <th>Numero</th>
                         <th>Status</th>
+                        <th>Preço por hora</th>
                         <th style="white-space: nowrap;">Atualizar</th>
                         <th style="white-space: nowrap;">Excluir</th>
                     </tr>
@@ -45,6 +46,7 @@
                         <td th:text="${estacionamento.id}"></td>
                         <td th:text="${estacionamento.estacionamentoNumero}"></td>
                         <td th:text="${estacionamento.status}"></td>
+                        <td th:text="${estacionamento.precohora}"></td>
                         <td><a th:href="@{'/estacionamentoatualizar/' + ${estacionamento.id}}" class="btn btn-warning">Alterar</a>
                         </td>
                         <td>

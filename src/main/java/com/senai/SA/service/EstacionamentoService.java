@@ -22,6 +22,7 @@ public class EstacionamentoService {
 
         EstacionamentoModel estacionamentoModel = new EstacionamentoModel();
         estacionamentoModel.setNumero(dto.getEstacionamentoNumero());
+        estacionamentoModel.setPrecoHora(dto.getPrecohora());
         estacionamentoModel.setStatus(Status.livre);
         repository.save(estacionamentoModel);
         return true;
@@ -45,6 +46,7 @@ public class EstacionamentoService {
             estacionamentoDto.setId(model.getId());
             estacionamentoDto.setEstacionamentoNumero(model.getNumero());
             estacionamentoDto.setStatus(model.getStatus().toString());
+            estacionamentoDto.setPrecohora(model.getPrecoHora());
             lista.add(estacionamentoDto);
         }
         return lista;
@@ -72,6 +74,7 @@ public class EstacionamentoService {
                 default:
                     break;
             }
+            estacionamentoModel.get().setPrecoHora(dto.getPrecohora());
             atualizou = true;
         }
         if (atualizou) repository.save(estacionamentoModel.get());
@@ -89,7 +92,7 @@ public class EstacionamentoService {
         return dto;
     }
 
-    public long qtdEstacionamentos(){
+    public long qtdEstacionamentos() {
         return repository.count();
     }
 

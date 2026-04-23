@@ -10,4 +10,5 @@ public class EstacionamentoRespostaDto {
     private int id;
     private String estacionamentoNumero;
     private String status;
+    private Float precohora;
 }

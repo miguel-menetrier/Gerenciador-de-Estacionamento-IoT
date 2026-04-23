@@ -20,5 +20,8 @@ public class EstacionamentoModel {
     @Column(name = "estacionamentostatus")
     private Status status;
 
+    @Column(name = "ESTACIONAMENTOPRECOPORHORA")
+    private Float precoHora;
+
 
 }

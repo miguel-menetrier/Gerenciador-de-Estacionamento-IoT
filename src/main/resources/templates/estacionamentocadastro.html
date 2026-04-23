@@ -36,6 +36,16 @@
                            placeholder="A101" required/>
                 </div>
 
+                <div class="mb-3">
+                    <label for="estacionamento_preco" class="form-label">Preço por hora</label>
+                    <input type="number" class="form-control"
+                           th:field="*{precohora}" id="estacionamento_preco"
+                           min="0.01"
+                           step="0.01"
+                           placeholder="1.00"
+                           required/>
+                </div>
+
                 <!-- Adiciona uma margem inferior de 1rem (16px) ao elemento -->
                 <div class="mb-3">
                     <label for="estacionamento_status" class="form-label">Status</label>
