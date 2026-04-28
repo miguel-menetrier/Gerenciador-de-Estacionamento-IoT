@@ -27,25 +27,26 @@
             th:object="${reservaDto}">
 
 
-        <div class="mb-3">
-          <label for="usuario_id" class="form-label">Usuario</label>
+          <div class="mb-3">
+              <label for="estacionamento_id" class="form-label">Vaga de Estacionamento</label>
+              <select class="form-select" th:field="*{estacionamentoId}" id="estacionamento_id" required>
+                  <option value="">Selecione uma vaga</option>
+                  <option th:each="est : ${estacionamentoList}"
+                          th:value="${est.id}"
+                          th:text="${est.estacionamentoNumero}">
+                  </option>
+              </select>
+          </div>
 
-          <select class="form-select" th:field="*{usuario}" id="usuario_id" required>
-            <option value="">Selecione um usuario</option>
-            <option th:each="u : ${usuarioList}"
-                    th:value="${u.nome}"
-                    th:text="${u.nome}"
-                    th:selected="${u.nome == reservaDto.usuario}">
-            </option>
-          </select>
+          <div class="mb-3">
+              <label for="hora_chegada" class="form-label">Hora de Chegada</label>
+              <input type="time" class="form-control" th:field="*{horariochegada}" id="hora_chegada" required/>
+          </div>
 
-        </div>
-        <div class="mb-3">
-          <label for="hora_chegada" class="form-label">Hora de Chegada</label>
-          <input type="time" class="form-control"
-                 th:value="${#temporals.format(reservaDto.horariochegada, 'HH:mm')}"
-                 id="hora_chegada" name="horariochegada" required/>
-        </div>
+          <div class="mb-3">
+              <label for="reserva_datainicio" class="form-label">Data inicial</label>
+              <input type="date" class="form-control" th:field="*{reservaDatainicio}" id="reserva_datainicio" required/>
+          </div>
 
         <div class="mb-3">
           <label for="nome_carro" class="form-label">Carro</label>
@@ -61,12 +62,6 @@
                  id="hora_saida" name="horarioSaida" required/>
         </div>
 
-        <div class="mb-3">
-          <label for="reserva_datainicio" class="form-label">Data inicial</label>
-          <input type="date" class="form-control"
-                 th:value="${#temporals.format(reservaDto.reservaDatainicio, 'yyyy-MM-dd')}"
-                 id="reserva_datainicio" name="reservaDatainicio" required/>
-        </div>
 
         <div class="mb-3">
           <label for="reserva_datafim" class="form-label">Data final</label>
@@ -74,7 +69,6 @@
                  th:value="${#temporals.format(reservaDto.reservadataFim, 'yyyy-MM-dd')}"
                  id="reserva_datafim" name="reservadataFim" required/>
         </div>
-
 
 
 

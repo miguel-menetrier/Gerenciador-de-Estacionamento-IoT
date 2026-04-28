@@ -5,7 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -16,13 +18,17 @@ public class ReservaRequisicaoDto {
     private LocalTime tempoTotal;
 
     @NotNull(message = "A reserva tem te ter uma data de inicio")
-    private LocalDateTime reservaDatainicio;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate reservaDatainicio;
 
     @NotNull(message = "A reserva tem que ter uma data de fim")
-    private LocalDateTime reservadataFim;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate reservadataFim;
 
-    private LocalDateTime horariochegada;
-    private LocalDateTime horarioSaida;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime horariochegada;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime horarioSaida;
 
     @NotBlank(message = "A placa de carro não pode ser nula")
     @Size(min = 7, max = 7, message = "A placa de carro deve conter 7 caracteres")

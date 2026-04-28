@@ -24,28 +24,41 @@ public class ReservaService {
     private final EstacionamentoRepository estacionamentoRepository;
 
     public boolean cadastrarReserva(ReservaRequisicaoDto resquisicao) {
-        boolean cadastrou = false;
-        Reservamodel reserva = new Reservamodel();
-        Optional<EstacionamentoModel> estacionamentoModelOptional = estacionamentoRepository.findById(resquisicao.getEstacionamentoId());
-        Optional<UsuarioModel> usuarioModelOptional = usuarioRepository.findById(resquisicao.getUsuarioId());
+        // Busca obrigatória para evitar campos nulos no banco
+        EstacionamentoModel estacionamento = estacionamentoRepository.findById(resquisicao.getEstacionamentoId())
+                .orElseThrow(() -> new NotFoundException("Estacionamento não encontrado"));
+        UsuarioModel usuario = usuarioRepository.findById(resquisicao.getUsuarioId())
+                .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
 
+        Reservamodel reserva = new Reservamodel();
         reserva.setReservaDatainicio(resquisicao.getReservaDatainicio());
         reserva.setReservadataFim(resquisicao.getReservadataFim());
+        reserva.setHorariochegada(resquisicao.getHorariochegada());
+        reserva.setHorarioSaida(resquisicao.getHorarioSaida());
 
-        if (estacionamentoModelOptional.isPresent()) {
-            reserva.setEstacionamentoId(estacionamentoModelOptional.get());
-        }
-        if (usuarioModelOptional.isPresent()) {
-            reserva.setUsuarioId(usuarioModelOptional.get());
-        }
-        reserva.setPrecoHora(resquisicao.getPrecoHora());
+        // Pegando o preço da hora diretamente do estacionamento ou do DTO
+        reserva.setPrecoHora(estacionamento.getPrecoHora());
         reserva.setNomeCarro(resquisicao.getNomeCarro());
         reserva.setPlacaCarro(resquisicao.getPlacaCarro());
+        reserva.setEstacionamentoId(estacionamento);
+        reserva.setUsuarioId(usuario);
+
+        // Cálculo automático de tempo e preço
+        if (resquisicao.getHorariochegada() != null && resquisicao.getHorarioSaida() != null) {
+            java.time.Duration duracao = java.time.Duration.between(resquisicao.getHorariochegada(), resquisicao.getHorarioSaida());
+            long horas = duracao.toHours();
+            long minutos = duracao.toMinutesPart();
+            reserva.setTempoTotal(java.time.LocalTime.of((int) horas, (int) minutos));
+
+            float precoFinal = (horas + (minutos / 60.0f)) * reserva.getPrecoHora();
+            reserva.setPrecoTotal(precoFinal);
+        } else {
+            reserva.setTempoTotal(java.time.LocalTime.of(0, 0));
+            reserva.setPrecoTotal(0.0f);
+        }
 
         repository.save(reserva);
-
-        cadastrou = true;
-        return cadastrou;
+        return true;
     }
 
     public boolean deletarReserva(int id) {
@@ -60,28 +73,33 @@ public class ReservaService {
     }
 
     public List<ReservaRespostaDto> listarReservas() {
-        ReservaRespostaDto respostaDto = new ReservaRespostaDto();
         List<ReservaRespostaDto> respostaList = new ArrayList<>();
         List<Reservamodel> listaReservaModel = repository.findAll();
 
-
-
         for (Reservamodel dados : listaReservaModel) {
+            // Mova a instância para DENTRO do loop
+            ReservaRespostaDto respostaDto = new ReservaRespostaDto();
+
             respostaDto.setId(dados.getId());
             respostaDto.setPrecoHora(dados.getPrecoHora());
             respostaDto.setReservaDatainicio(dados.getReservaDatainicio());
             respostaDto.setNomeCarro(dados.getNomeCarro());
             respostaDto.setPlacaCarro(dados.getPlacaCarro());
             respostaDto.setReservadataFim(dados.getReservadataFim());
-            respostaDto.setEstacionamento(dados.getEstacionamentoId().getNumero());
-            respostaDto.setUsuario(dados.getUsuarioId().getNome());
+
+            if (dados.getEstacionamentoId() != null) {
+                respostaDto.setEstacionamento(dados.getEstacionamentoId().getNumero());
+            }
+            if (dados.getUsuarioId() != null) {
+                respostaDto.setUsuario(dados.getUsuarioId().getNome());
+            }
+
             respostaDto.setHorariochegada(dados.getHorariochegada());
-            respostaDto.setUsuario(dados.getUsuarioId().getNome());
             respostaDto.setHorarioSaida(dados.getHorarioSaida());
             respostaDto.setPrecoTotal(dados.getPrecoTotal());
             respostaDto.setTempoTotal(dados.getTempoTotal());
-            respostaList.add(respostaDto);
 
+            respostaList.add(respostaDto);
         }
         return respostaList;
     }

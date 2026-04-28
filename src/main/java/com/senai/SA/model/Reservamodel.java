@@ -3,6 +3,7 @@ package com.senai.SA.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -20,15 +21,15 @@ public class Reservamodel {
     private LocalTime tempoTotal;
 
     @Column(name = "RESERVADATAINICIO")
-    private LocalDateTime reservaDatainicio;
+    private LocalDate reservaDatainicio;
     @Column(name = "RESERVASDATAFIM")
-    private LocalDateTime reservadataFim;
+    private LocalDate reservadataFim;
 
     @Column(name = "RESERVAHORARIOCHEGADA")
-    private LocalDateTime horariochegada;
+    private LocalTime horariochegada;
 
     @Column(name = "RESERVAHORARIOSAIDA")
-    private LocalDateTime horarioSaida;
+    private LocalTime horarioSaida;
 
     @Column(name = "RESERVAPLACACARRO")
     private String placaCarro;

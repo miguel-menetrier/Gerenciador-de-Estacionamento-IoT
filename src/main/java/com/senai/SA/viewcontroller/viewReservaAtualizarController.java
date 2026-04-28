@@ -4,6 +4,7 @@ package com.senai.SA.viewcontroller;
 import com.senai.SA.dto.ReservaRequisicaoDto;
 import com.senai.SA.dto.ReservaRespostaDto;
 import com.senai.SA.dto.UsuarioRespostaDto;
+import com.senai.SA.service.EstacionamentoService;
 import com.senai.SA.service.ReservaService;
 import com.senai.SA.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
@@ -22,15 +23,15 @@ public class viewReservaAtualizarController {
 
     private final ReservaService service;
     private final UsuarioService usuarioService;
+    private final EstacionamentoService estacionamentoService;
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("reservaatualizar/{id}")
     public String viewReservaAtualziar(@PathVariable("id") int id, Model model) {
-
         ReservaRespostaDto reservaRespostaDto = service.buscarReservaPorId(id);
-        List<UsuarioRespostaDto> usuariolista = usuarioService.listarUsuarios();
 
-        model.addAttribute("usuarioList", usuariolista);
+        model.addAttribute("usuarioList", usuarioService.listarUsuarios());
+        model.addAttribute("estacionamentoList", estacionamentoService.listarEstacionamentos()); // Linha essencial
         model.addAttribute("reservaDto", reservaRespostaDto);
 
         return "reservaatualizar";
