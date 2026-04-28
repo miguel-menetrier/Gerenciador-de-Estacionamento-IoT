@@ -105,35 +105,49 @@ public class ReservaService {
     }
 
     public boolean atualizarReserva(int id, ReservaRequisicaoDto dto) {
-        boolean atualizou = false;
+        // 1. Verifica se o ID da reserva é válido
+        if (id == 0) return false;
+
         Optional<Reservamodel> reservaModelOptional = repository.findById(id);
-        Optional<EstacionamentoModel> estacionamentoModelOptional = estacionamentoRepository.findById(dto.getEstacionamentoId());
-        Optional<UsuarioModel> usuarioModelOptional = usuarioRepository.findById(dto.getUsuarioId());
 
         if (reservaModelOptional.isPresent()) {
             Reservamodel model = reservaModelOptional.get();
 
-            model.setPrecoHora(dto.getPrecoHora());
-            model.setReservaDatainicio(dto.getReservaDatainicio());
+            // 2. Busca as entidades usando os IDs que o formulário enviou (name="estacionamentoId")
+            // AQUI ESTAVA O ERRO: Se dto.getEstacionamentoId() for null, o findById estoura.
+            if (dto.getEstacionamentoId() == null || dto.getUsuarioId() == null) {
+                throw new IllegalArgumentException("ID de usuário ou estacionamento não fornecido.");
+            }
+
+            EstacionamentoModel est = estacionamentoRepository.findById(dto.getEstacionamentoId())
+                    .orElseThrow(() -> new NotFoundException("Vaga não encontrada"));
+            UsuarioModel usu = usuarioRepository.findById(dto.getUsuarioId())
+                    .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
+
+            // 3. Equals lógico: Atualiza as referências
+            model.setEstacionamentoId(est);
+            model.setUsuarioId(usu);
+            model.setPrecoHora(est.getPrecoHora());
+
+            // 4. Atualiza os dados de texto e data
             model.setNomeCarro(dto.getNomeCarro());
             model.setPlacaCarro(dto.getPlacaCarro());
+            model.setReservaDatainicio(dto.getReservaDatainicio());
             model.setReservadataFim(dto.getReservadataFim());
-
-            if (estacionamentoModelOptional.isPresent()) {
-                model.setEstacionamentoId(estacionamentoModelOptional.get());
-            }
-            if (usuarioModelOptional.isPresent()) {
-                model.setUsuarioId(usuarioModelOptional.get());
-            }
-
             model.setHorariochegada(dto.getHorariochegada());
             model.setHorarioSaida(dto.getHorarioSaida());
-            model.setPrecoTotal(dto.getPrecoTotal());
-            model.setTempoTotal(dto.getTempoTotal());
+
+            // 5. Recalcula tempo e preço total para o Update ser preciso
+            if (dto.getHorariochegada() != null && dto.getHorarioSaida() != null) {
+                java.time.Duration duracao = java.time.Duration.between(dto.getHorariochegada(), dto.getHorarioSaida());
+                model.setTempoTotal(java.time.LocalTime.of((int)duracao.toHours(), (int)duracao.toMinutesPart()));
+                model.setPrecoTotal((duracao.toMinutes() / 60.0f) * model.getPrecoHora());
+            }
+
             repository.save(model);
-            atualizou = true;
+            return true;
         }
-        return atualizou;
+        return false;
     }
 
     public ReservaRespostaDto buscarReservaPorId(int id) {
