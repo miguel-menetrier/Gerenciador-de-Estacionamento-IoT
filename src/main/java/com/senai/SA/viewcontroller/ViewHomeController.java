@@ -20,8 +20,8 @@ public class ViewHomeController {
 
     @GetMapping("/home")
     public String viewHome(Model model, @AuthenticationPrincipal UsuarioModel usuario) {
-        model.addAttribute("qtdEstacionamento",estacionamentoService.qtdEstacionamentos());
-        model.addAttribute("qtdReserva",reservaService.qtdReserva());
+        model.addAttribute("qtdEstacionamento", estacionamentoService.qtdEstacionamentos());
+        model.addAttribute("qtdReserva", reservaService.qtdReserva());
         model.addAttribute("qtdUsuario", usuarioService.qtdUsuarios());
         model.addAttribute("nomeUsuario", usuario.getNome());
 

@@ -15,9 +15,9 @@ public class ViewReservaListaController {
     private final ReservaService service;
 
     @GetMapping("/reservalista")
-    public String listReserva(Model model){
-        List<ReservaRespostaDto>listaDto = service.listarReservas();
-        model.addAttribute("listaDto",listaDto);
+    public String listReserva(Model model) {
+        List<ReservaRespostaDto> listaDto = service.listarReservas();
+        model.addAttribute("listaDto", listaDto);
 
         return "reservalista";
     }

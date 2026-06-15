@@ -45,7 +45,8 @@
                     <tr th:each="estacionamento : ${listaDto}">
                         <td th:text="${estacionamento.id}"></td>
                         <td th:text="${estacionamento.estacionamentoNumero}"></td>
-                        <td th:text="${estacionamento.status}"></td>
+                        <td th:data-spot-id="${estacionamento.id}"
+                            th:text="${estacionamento.status}"></td>
                         <td th:text="${estacionamento.precohora}"></td>
                         <td><a th:href="@{'/estacionamentoatualizar/' + ${estacionamento.id}}" class="btn btn-warning">Alterar</a>
                         </td>
@@ -65,6 +66,18 @@
 
 <!-- Inclua o script do excluir_usuario.js -->
 <script src="/script/excluir_estacionamento.js"></script>
+<script>
+    const spotEvents = new EventSource("/estacionamentos/live");
+
+    spotEvents.addEventListener("spot-update", (event) => {
+        const spot = JSON.parse(event.data);
+        const statusCell = document.querySelector(`[data-spot-id="${spot.id}"]`);
+
+        if (statusCell) {
+            statusCell.textContent = spot.status;
+        }
+    });
+</script>
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

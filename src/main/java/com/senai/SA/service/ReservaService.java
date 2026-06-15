@@ -140,7 +140,7 @@ public class ReservaService {
             // 5. Recalcula tempo e preço total para o Update ser preciso
             if (dto.getHorariochegada() != null && dto.getHorarioSaida() != null) {
                 java.time.Duration duracao = java.time.Duration.between(dto.getHorariochegada(), dto.getHorarioSaida());
-                model.setTempoTotal(java.time.LocalTime.of((int)duracao.toHours(), (int)duracao.toMinutesPart()));
+                model.setTempoTotal(java.time.LocalTime.of((int) duracao.toHours(), (int) duracao.toMinutesPart()));
                 model.setPrecoTotal((duracao.toMinutes() / 60.0f) * model.getPrecoHora());
             }
 
@@ -160,7 +160,7 @@ public class ReservaService {
     }
 
 
-    public long qtdReserva(){
+    public long qtdReserva() {
         System.out.println(repository.count());
         return repository.count();
     }

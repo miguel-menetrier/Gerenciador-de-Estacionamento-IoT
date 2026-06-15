@@ -1,9 +1,7 @@
 package com.senai.SA.viewcontroller;
 
 
-import com.senai.SA.dto.ReservaRequisicaoDto;
 import com.senai.SA.dto.ReservaRespostaDto;
-import com.senai.SA.dto.UsuarioRespostaDto;
 import com.senai.SA.service.EstacionamentoService;
 import com.senai.SA.service.ReservaService;
 import com.senai.SA.service.UsuarioService;
@@ -13,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor

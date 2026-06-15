@@ -5,7 +5,6 @@ import com.senai.SA.model.Reservamodel;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
@@ -20,6 +19,8 @@ public class ReservaRespostaDto {
     private String nomeCarro;
     private Float precoHora;
     private Float precoTotal;
+    private Integer estacionamentoId;
+    private Integer usuarioId;
     private String estacionamento;
     private String usuario;
 
@@ -39,9 +40,11 @@ public class ReservaRespostaDto {
         this.tempoTotal = reservamodel.getTempoTotal();
 
         if (reservamodel.getUsuarioId() != null) {
+            this.usuarioId = reservamodel.getUsuarioId().getId();
             this.usuario = reservamodel.getUsuarioId().getNome();
         }
         if (reservamodel.getEstacionamentoId() != null) {
+            this.estacionamentoId = reservamodel.getEstacionamentoId().getId();
             this.estacionamento = reservamodel.getEstacionamentoId().getNumero();
         }
     }

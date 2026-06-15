@@ -18,8 +18,8 @@ public class ViewReservaCadastroController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/reservacadastro")
     public String cadastrarReserva(Model model) {
-        model.addAttribute("usuarioList",usuarioService.listarUsuarios());
-        model.addAttribute("estacionamentoList",estacionamentoService.listarEstacionamentos());
+        model.addAttribute("usuarioList", usuarioService.listarUsuarios());
+        model.addAttribute("estacionamentoList", estacionamentoService.listarEstacionamentos());
         model.addAttribute("reservaDto", new ReservaRequisicaoDto());
         return "reservacadastro";
 

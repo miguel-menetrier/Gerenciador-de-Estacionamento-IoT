@@ -17,6 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class EstacionamentoService {
     private final EstacionamentoRepository repository;
+    private final EstacionamentoLiveService liveService;
 
     public boolean cadastrarEstacionamento(EstacionamentoRequisicaoDto dto) {
 
@@ -77,7 +78,10 @@ public class EstacionamentoService {
             estacionamentoModel.get().setPrecoHora(dto.getPrecohora());
             atualizou = true;
         }
-        if (atualizou) repository.save(estacionamentoModel.get());
+        if (atualizou) {
+            EstacionamentoModel model = repository.save(estacionamentoModel.get());
+            liveService.publish(model.getId(), model.getStatus().toString());
+        }
         return atualizou;
     }
 
