@@ -16,7 +16,7 @@ import java.util.List;
 public class ViewEstacionamentoListaController {
     private final EstacionamentoService service;
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/estacionamentolista")
     public String viewUsuarioLista(Model model) {
 

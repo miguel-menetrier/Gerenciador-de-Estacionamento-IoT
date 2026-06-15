@@ -17,6 +17,7 @@ public class EstacionamentoModel {
     @Column(name = "estacionamentonumero")
     private String numero;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "estacionamentostatus")
     private Status status;
 
