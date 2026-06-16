@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -41,8 +41,8 @@
                         <th>Estacionamento</th>
                         <th>Usuario</th>
                         <th>Total</th>
-                        <th style="white-space: nowrap;">Atualizar</th>
-                        <th style="white-space: nowrap;">Excluir</th>
+                        <th sec:authorize="hasRole('ADMIN')" style="white-space: nowrap;">Atualizar</th>
+                        <th sec:authorize="hasRole('ADMIN')" style="white-space: nowrap;">Excluir</th>
                     </tr>
                     </thead>
 
@@ -57,10 +57,10 @@
                         <td th:text="${reserva.estacionamento}"></td>
                         <td th:text="${reserva.usuario}"></td>
                         <td th:text="${reserva.precoTotal}"></td>
-                        <td><a th:href="@{'/reservaatualizar/' + ${reserva.id}}" class="btn btn-warning">Alterar</a>
+                        <td sec:authorize="hasRole('ADMIN')"> <a sec:authorize="hasRole('ADMIN')" th:href="@{'/reservaatualizar/' + ${reserva.id}}" class="btn btn-warning">Alterar</a>
                         </td>
-                        <td>
-                            <button th:data-reserva-id="${reserva.id}" class="excluir btn btn-danger">
+                        <td sec:authorize="hasRole('ADMIN')">
+                            <button sec:authorize="hasRole('ADMIN')" th:data-reserva-id="${reserva.id}" class="excluir btn btn-danger">
                                 Excluir
                             </button>
                         </td>
